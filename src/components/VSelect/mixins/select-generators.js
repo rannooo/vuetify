@@ -281,6 +281,7 @@ export default {
             if (disabled) return
 
             this.selectItem(item)
+            if (this.tileCb) this.tileCb(item)
           }
         },
         props: {
@@ -297,6 +298,10 @@ export default {
       data.props.activeClass = Object.keys(this.addTextColorClassChecks()).join(' ')
 
       if (this.$scopedSlots.item) {
+        if (this.tileClass) {
+          data.class = {}
+          data.class[this.tileClass] = true
+        }
         const tile = this.$scopedSlots.item({ parent: this, item, tile: data })
         return this.needsTile(tile)
           ? this.$createElement(VListTile, data, [tile])
