@@ -57,6 +57,8 @@ export default {
     searchInput: {
       default: null
     },
+    tileCb: Function,
+    tileClass: String,
     segmented: Boolean,
     singleLine: Boolean,
     tags: Boolean,

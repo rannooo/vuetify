@@ -275,8 +275,11 @@ export default {
     },
     genFix (type) {
       return this.$createElement('span', {
-        'class': `input-group--text-field__${type}`
-      }, this[type])
+        'class': `input-group--text-field__${type}`,
+        domProps: {
+          innerHTML: this[type]
+        }
+      })
     },
     clearableCallback () {
       this.inputValue = null
