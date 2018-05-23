@@ -22,6 +22,7 @@ export default {
     appendIconCb: Function,
     disabled: Boolean,
     hint: String,
+    hintCb: Function,
     hideDetails: Boolean,
     label: String,
     persistentHint: Boolean,
@@ -98,9 +99,19 @@ export default {
       }, messages)
     },
     genHint () {
+      const callback = this.hintCb
+
       return this.$createElement('div', {
         'class': 'input-group__messages input-group__hint',
-        domProps: { innerHTML: this.hint }
+        domProps: { innerHTML: this.hint },
+        on: {
+          click: e => {
+            if (!callback) return
+
+            e.stopPropagation()
+            callback()
+          }
+        }
       })
     },
     genError (error) {
